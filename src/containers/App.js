@@ -11,7 +11,6 @@ class App extends Component {
             robots: [],
             searchfield: ''
         }
-        console.log('1');
     }
 
     componentDidMount() {
@@ -29,10 +28,9 @@ class App extends Component {
         const filteredRobots = robots.filter(robot => {
             return robot.name.toLowerCase().includes(searchfield.toLowerCase());
         })
-        if (robots.length === 0) {
-            return <h1>Loading</h1>
-        } else {
-            return (
+        return !robots.length ?
+            <h1>Loading</h1> :
+            (
                 <div className='tc' >
                     <h1 className='f1'>RoboFriends</h1>
                     <SearchBox searchChange={this.onSearchChange} />
@@ -41,7 +39,6 @@ class App extends Component {
                     </Scroll>
                 </div>
             );
-        }
     }
 }
 
